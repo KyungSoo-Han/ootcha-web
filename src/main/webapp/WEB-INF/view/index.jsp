@@ -18,7 +18,7 @@
     %>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ASELCNI WMS</title>
+    <title>OOTCHA WMS</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -177,8 +177,8 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
         <a href="/" class="brand-link">
-            <img src="dist/img/아셀NewICO.ico" alt="AdminLTE Logo" class="brand-image img-size-50 elevation-3" style="opacity: .8">
-            <span class="brand-text font-weight-light" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; ">(주)아셀씨앤아이</span>
+            <img src="dist/img/ars_logo.jpg" alt="AdminLTE Logo" class="brand-image img-size-50 elevation-3" style="opacity: .8">
+            <span class="brand-text font-weight-light" style="font-family: 'Font Awesome 5 Brands', Tahoma, Geneva, Verdana, sans-serif; ">(주)읏차</span>
         </a>
 
         <!-- Sidebar -->
@@ -248,7 +248,7 @@
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
-        <strong><a href="http://aselcni.com">Aselcni.com</a></strong>
+        <strong><a href="http://wms.ootcha.com">읏차</a></strong>
         <div class="float-right d-none d-sm-inline-block">
             <b>Version</b> 1.1.0
         </div>

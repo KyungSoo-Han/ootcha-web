@@ -32,7 +32,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="../../index.jsp"><b>WMS </b>ASELCNI</a>
+        <a href="../../index.jsp"><b>WMS </b>OOTCHA</a>
     </div>
     <!-- /.login-logo -->
     <div class="card">

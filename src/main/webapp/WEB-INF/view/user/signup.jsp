@@ -35,7 +35,7 @@
 <body class="hold-transition register-page">
 <div class="register-box">
 	<div class="register-logo">
-		<a href="../../index.jsp"><b>WMS </b>ASELCNI</a>
+		<a href="../../index.jsp"><b>WMS </b>OOTCHA</a>
 	</div>
 
 	<div class="card">
