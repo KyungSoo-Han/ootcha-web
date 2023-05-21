@@ -2,7 +2,7 @@ let bizCd = "1";// document.getElementById("bizCd").value;
 let centerCd = "1";// document.getElementById("bizCd").value;
 
 const isLocalhost = window.location.hostname === 'localhost';
-const serverUrl = isLocalhost ? 'http://localhost:81' : 'http://192.168.0.68:80';
+const serverUrl = isLocalhost ? 'http://localhost:81' : 'http://api.infonation.kr:81';
 
 const token = sessionStorage.getItem("token");
 const userName = sessionStorage.getItem("userName");
