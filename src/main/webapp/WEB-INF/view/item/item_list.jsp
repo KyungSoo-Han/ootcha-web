@@ -42,7 +42,8 @@
             </td>
             <td>
                 <button onclick="Search()" id="Search">조회</button>
-                <button onclick ="popUp3('/item/item_iud','item_iud','1000','1000')">저장</button>
+                <button onclick ="popUp3('/item/item_iud','item_iud','1000','1000')">추가</button>
+                <button onclick ="popUp3('/item/item_iud','item_iud','1000','1000')">변경</button>
             </td>
         </tr>
     </table>

@@ -41,8 +41,9 @@
                 <%--<select id="customer" style="width: 400px;"></select>--%>
                 <input type="text" id="customerCd">
             </td>
-            <td><button onclick="Search()" id="Search">조회</button></td>
-            <td><button onclick ="popUp2('/destination/destination_iud','destination_iud','1000','500')">저장</button></td>
+            <td><button onclick="Search()" id="Search">조회</button>
+            <button onclick ="popUp2('/destination/destination_iud','destination_iud','1000','500')">추가</button>
+            <button onclick ="popUp2('/destination/destination_iud','destination_iud','1000','500')">변경/삭제</button></td>
         </tr>
     </table>
 </div>

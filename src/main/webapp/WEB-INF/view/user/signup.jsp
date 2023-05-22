@@ -44,6 +44,14 @@
 
 			<form >
 				<div class="input-group mb-3">
+					<input type="text" id="bizCd" class="form-control" placeholder="Business Code">
+					<div class="input-group-append">
+						<div class="input-group-text">
+							<span class="fas fa-user"></span>
+						</div>
+					</div>
+				</div>
+				<div class="input-group mb-3">
 					<input type="text" id="id" class="form-control" placeholder="Id">
 					<div class="input-group-append">
 						<div class="input-group-text">

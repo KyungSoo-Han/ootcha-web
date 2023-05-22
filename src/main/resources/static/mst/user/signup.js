@@ -19,7 +19,7 @@ function Save() {
         return;
     }
     let saveData = JSON.stringify({
-        "bizCd" : sessionStorage.getItem("bizCd"),
+        "bizCd" : document.getElementById('bizCd').value,
         "id" : id.value,
         "email": email.value,
         "name": name.value,

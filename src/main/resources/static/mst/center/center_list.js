@@ -116,7 +116,7 @@ function createGrid(container) {
         commitWhenLeave: true
     });
     gridView.setStateBar({
-        visible: false
+        visible: true
     });
     //편집 가능,불가능 그리드
     gridView.editOptions.editable = false;
