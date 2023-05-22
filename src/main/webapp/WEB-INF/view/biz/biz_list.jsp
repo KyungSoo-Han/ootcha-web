@@ -45,7 +45,8 @@
 
   <div>
     <button onclick="Search()" >조회</button>
-    <button onclick ="popUp('/biz/biz_iud','biz_iud','1000','500')">저장</button>
+    <button onclick ="popUp('/biz/biz_iud','biz_iud','1000','500')">추가</button>
+    <button onclick ="popUp('/biz/biz_iud','biz_iud','1000','500')">변경/삭제</button>
   </div>
 
   <div id="bizList" style="width: 100%; height:650px"></div>

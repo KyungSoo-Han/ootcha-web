@@ -41,7 +41,15 @@
 
             <form method="post">
                 <div class="input-group mb-3">
-                    <input type="text" id="id" class="form-control" value="hanks" placeholder="1234@email.com">
+                    <input type="text" id="bizCd" class="form-control" value="1" placeholder="Business Code">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" id="id" class="form-control" value="test" placeholder="Id">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
@@ -49,7 +57,7 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" id="password" class="form-control" value="1234" placeholder="1234">
+                    <input type="password" id="password" class="form-control" value="1234" placeholder="Password">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>

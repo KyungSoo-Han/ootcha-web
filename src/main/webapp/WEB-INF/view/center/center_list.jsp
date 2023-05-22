@@ -34,7 +34,8 @@
 <body>
 <p>기준정보 > 센터관리</p>
 <button onclick="Search()" id="Search">조회</button>
-<button onclick ="popUp1('/center/center_iud','center_iud','1000','500')">저장</button>
+<button onclick ="popUp1('/center/center_iud','center_iud','1000','500')">추가</button>
+<button onclick ="popUp1('/center/center_iud','center_iud','1000','500')">변경/삭제</button>
 
 <div id="centerList" style="width: 100%; height:650px"></div>
 

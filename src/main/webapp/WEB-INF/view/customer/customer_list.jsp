@@ -34,7 +34,8 @@
 <body>
 <p>기준정보 > 화주사관리</p>
 <button onclick="Search()" id="Search">조회</button>
-<button onclick ="popUp5('/customer/customer_iud','customer_iud','1000','500')">저장</button>
+<button onclick ="popUp5('/customer/customer_iud','customer_iud','1000','500')">추가</button>
+<button onclick ="popUp5('/customer/customer_iud','customer_iud','1000','500')">변경</button>
 </div>
 
 <div id="customerList" style="width: 100%; height:650px"></div>

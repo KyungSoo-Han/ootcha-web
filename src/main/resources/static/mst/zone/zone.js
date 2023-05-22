@@ -135,7 +135,7 @@ function createGrid(container) {
         commitWhenLeave: true
     });
     gridView.setStateBar({
-        visible: false
+        visible: true
     });
     //편집 가능,불가능 그리드
     gridView.editOptions.editable = true;
@@ -192,6 +192,7 @@ function Save(){
 
     let getSaveData = [ ...dataProvider.getAllStateRows().updated, ...dataProvider.getAllStateRows().created];
     let saveData = getSaveData.map(e=>{
+        console.log(e);
         return e
     });
 
@@ -201,6 +202,10 @@ function Save(){
             jsonData = dataProvider.getJsonRow(saveData[i]);        // 그리드의 값으로 json 데이터 생성
             jsonData.bizCd = bizCd;
             jsonData.centerCd = center;
+
+            if (jsonData.zoneCd === undefined)
+                continue;
+
             data.push(jsonData);
         }
 
@@ -214,10 +219,9 @@ function Save(){
         data: JSON.stringify (data),
         success: function(data) {
 
-            dataProvider.fillJsonData(data.data, {});   // 결과 데이터 그리드에 채워 넣기
+            //dataProvider.fillJsonData(data.data, {});   // 결과 데이터 그리드에 채워 넣기
             dataProvider.clearRowStates();              // 추가 & 수정 상태 초기화
             gridView.closeLoading();                    // 로딩창 닫기
-
         }, error: function (data) {
             gridView.closeLoading();
         }
