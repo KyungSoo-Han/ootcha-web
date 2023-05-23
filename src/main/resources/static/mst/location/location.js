@@ -261,7 +261,7 @@ function Save(){
         data: JSON.stringify (data),
         success: function(data) {
 
-            dataProvider.fillJsonData(data.data, {});   // 결과 데이터 그리드에 채워 넣기
+            //dataProvider.fillJsonData(data.data, {});   // 결과 데이터 그리드에 채워 넣기
             dataProvider.clearRowStates();              // 추가 & 수정 상태 초기화
             gridView.closeLoading();                    // 로딩창 닫기
 
