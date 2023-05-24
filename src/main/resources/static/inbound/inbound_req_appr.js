@@ -88,7 +88,8 @@ let inboundReqColumn =[
         "width" : "80",
         "header" :{
             "text" : "입고요청번호",
-        }
+        },
+        numberFormat: "#,##0"
     },
     {
         "name" : "inboundExpDt",
@@ -409,6 +410,7 @@ function Search(){
 
     let searchCondition = new Object();
     searchCondition.bizCd = sessionStorage.getItem('bizCd')
+
     searchCondition.centerCd = sessionStorage.getItem('centerCd');
     searchCondition.inboundReqNo = document.getElementById('inboundReqNo').value;    // 신규 입력시 공백,
     searchCondition.inboundReqFromDt = document.getElementById('inboundReqFromDt').value;
@@ -421,12 +423,13 @@ function Search(){
 
     $.ajax({
         method : "POST",
-        url : sessionStorage.getItem("serverUrl")+"/api/inboundReq/list",
+        url : sessionStorage.getItem("serverUrl")+"/api/inboundReq/mst",
         contentType: 'application/json',
         data: JSON.stringify(searchCondition),
         success: function(data) {
 
             dataProvider.fillJsonData(data.data, {});   // 결과 데이터 그리드에 채워 넣기
+            SearchDetail(data.data[0].inboundReqDt,data.data[0].inboundReqNo);
             gridView.closeLoading();                    // 로딩창 닫기
 
         }, error: function (data) {
@@ -435,6 +438,32 @@ function Search(){
     });
 }
 
+
+function SearchDetail(inboundReqDt, inboundReqNo ){
+
+    gridView2.showLoading();
+
+    let searchCondition = new Object();
+    searchCondition.bizCd = sessionStorage.getItem('bizCd')
+    searchCondition.centerCd = sessionStorage.getItem('centerCd');
+    searchCondition.inboundReqNo = inboundReqNo;    // 신규 입력시 공백,
+    searchCondition.inboundReqDt = inboundReqDt;
+
+    $.ajax({
+        method : "POST",
+        url : sessionStorage.getItem("serverUrl")+"/api/inboundReq/dtl",
+        contentType: 'application/json',
+        data: JSON.stringify(searchCondition),
+        success: function(data) {
+
+            dataProvider2.fillJsonData(data.data, {});   // 결과 데이터 그리드에 채워 넣기
+            gridView2.closeLoading();                    // 로딩창 닫기
+
+        }, error: function (data) {
+            gridView2.closeLoading();
+        }
+    });
+}
 function pad(number, length) {
     let str = '' + number;
     while (str.length < length) {
@@ -530,36 +559,14 @@ function Refuse(){
 }
 
 $(function() {
-    gridView.onCellClicked = function (grid, clickData) {
-        gridView.showLoading();
-        dataProvider2.clearRows();
+    gridView.onCellClicked = function (grid, item, clickData) {
+        console.log(item);
+        if(item.cellType == 'gridEmpty')
+            return;
+        let inboundReqDt = dataProvider.getValue(item.itemIndex,'inboundReqDt' );
+        let inboundReqNo = dataProvider.getValue(item.itemIndex,'inboundReqNo' );
 
-        let searchCondition = new Object();
-        searchCondition.bizCd = sessionStorage.getItem('bizCd')
-        searchCondition.centerCd = sessionStorage.getItem('centerCd');
-        searchCondition.inboundReqNo = document.getElementById('inboundReqNo').value;    // 신규 입력시 공백,
-        searchCondition.inboundReqFromDt = document.getElementById('inboundReqFromDt').value;
-        searchCondition.inboundReqToDt = document.getElementById('inboundReqToDt').value;
-        if (document.getElementById('supplierCd').value != '')
-            searchCondition.supplierCd = document.getElementById('supplierCd').value;
-        if (document.getElementById('customerCd').value != '')
-            searchCondition.customerCd = document.getElementById('customerCd').value;
-        searchCondition.status = 0;
-
-        $.ajax({
-            method: "POST",
-            url: sessionStorage.getItem("serverUrl") + "/api/inboundReq/list",
-            contentType: 'application/json',
-            data: JSON.stringify(searchCondition),
-            success: function (data) {
-
-                dataProvider2.fillJsonData(data.data, {});   // 결과 데이터 그리드에 채워 넣기
-                gridView2.closeLoading();                    // 로딩창 닫기
-
-            }, error: function (data) {
-                gridView2.closeLoading();
-            }
-        });
+        SearchDetail(inboundReqDt,inboundReqNo);
     };
 });
 

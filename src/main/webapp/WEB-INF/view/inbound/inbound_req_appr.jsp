@@ -72,8 +72,8 @@
         </table>
     </div>
     <br>
-    <div id="inboundReqappr"  style ="width: 100%; height:400px"></div>
-    <div id="inboundReqappr2"  style ="width: 100%; height:400px"></div>
+    <div id="inboundReqAppr"  style ="width: 100%; height:400px"></div>
+    <div id="inboundReqAppr2"  style ="width: 100%; height:400px"></div>
     <div id="modalWrap" >
         <div id="modalBody" >
             <div style ="width: 100%; height:20px; padding-top:5px; padding-bottom:5px" >
@@ -93,12 +93,12 @@
 </body>
 <script>
     let nowDate = new Date();	// 현재 날짜 및 시간
-    let fdate = new Date(nowDate.setMonth(nowDate.getMonth() - 1));	// 한달 전
+    let inboundReqFromDt = new Date(nowDate.setMonth(nowDate.getMonth() - 1));	// 한달 전
 
     window.addEventListener('DOMContentLoaded', function () {
 
-        createGrid("inboundReqappr")
-        createGrid2("inboundReqappr2")
+        createGrid("inboundReqAppr")
+        createGrid2("inboundReqAppr2")
         createModalGrid("selectGrid")
 
         document.getElementById("inboundReqFromDt").value = inboundReqFromDt.toISOString().slice(0,10);

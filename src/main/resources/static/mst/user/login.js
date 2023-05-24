@@ -17,6 +17,7 @@ function Search() {
             sessionStorage.setItem("userName",data.data.username );
             window.location.replace("/");
 
+            sessionStorage.setItem("userId", id);
 
         }, error: function (data) {
             console.log(data);
