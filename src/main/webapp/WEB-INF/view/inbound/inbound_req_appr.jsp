@@ -72,7 +72,7 @@
         </table>
     </div>
     <br>
-    <div id="inboundReqAppr"  style ="width: 100%; height:400px"></div>
+    <div id="inboundReqAppr"  style ="width: 100%; height:260px"></div>
     <div id="inboundReqAppr2"  style ="width: 100%; height:400px"></div>
     <div id="modalWrap" >
         <div id="modalBody" >
@@ -80,7 +80,7 @@
                 <label>코드</label><input type="text" id="code" >
                 <label>명칭</label><input type="text" id="name" >
             </div>
-            <div id="selectGrid"  style ="width: 100%; height:500px">
+            <div id="selectGrid"  style ="width: 100%; height:490px">
             </div>
             <div  style ="width: 100%; height:70px">
                 <label id="modal_param"></label>

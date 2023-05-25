@@ -72,7 +72,7 @@
         </table>
     </div>
     <br>
-    <div id="inbound_req_list"  style ="width: 100%; height:650px">
+    <div id="inbound_req_list"  style ="width: 100%; height:660px">
     </div>
     <div id="modalWrap" >
         <div id="modalBody" >

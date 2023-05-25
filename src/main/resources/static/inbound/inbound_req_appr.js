@@ -3,6 +3,11 @@ let current;
 
 
 let inboundReqField = [
+
+    {
+        "fieldName" : "status",
+        "dataType" : "text"
+    },
     {
         "fieldName" : "inboundReqDt",
         "dataType" : "text"
@@ -72,6 +77,15 @@ let inboundReq2Field = [
 
 
 let inboundReqColumn =[
+    {
+        "name" : "status",
+        "fieldName" : "status",
+        "type" :"data",
+        "width" : "70",
+        "header" :{
+            "text" : "요청상태",
+        }
+    },
     {
         "name" : "inboundReqDt",
         "fieldName" : "inboundReqDt",
@@ -419,7 +433,7 @@ function Search(){
         searchCondition.supplierCd = document.getElementById('supplierCd').value;
     if(document.getElementById('customerCd').value != '')
         searchCondition.customerCd = document.getElementById('customerCd').value;
-    searchCondition.status = 0;
+    //searchCondition.status = 0;
 
     $.ajax({
         method : "POST",
@@ -487,12 +501,10 @@ function Appr(){
 
     if(saveData.length > 0) {
         for (let i in saveData) {
-
+            console.log(saveData[i]);
             jsonData = dataProvider.getJsonRow(saveData[i]);        // 그리드의 값으로 json 데이터 생성
             jsonData.bizCd = sessionStorage.getItem('bizCd');
-            jsonData.inboundReqNo = document.getElementById('inboundReqNo').value;
-            jsonData.checked = 0; // 승인, 거부 구분자 0일시 승인 1일시 거부
-
+            jsonData.status = 2;
             data.push(jsonData);
         }
     }
@@ -505,10 +517,9 @@ function Appr(){
         data: JSON.stringify (data),
         success: function(data) {
             console.log(data);
-            dataProvider.fillJsonData(data.data, {});   // 결과 데이터 그리드에 채워 넣기
-            dataProvider.clearRowStates();              // 추가 & 수정 상태 초기화
             gridView.closeLoading();                    // 로딩창 닫기
 
+            Search();
         }, error: function (data) {
             gridView.closeLoading();
         }
@@ -520,7 +531,7 @@ function Refuse(){
     let data = new Array();
     let jsonData = null;
 
-    gridView.showLoading();
+    gridView.showLoading()
 
     let getSaveData = gridView.getCheckedRows();
     console.log(getSaveData);
@@ -530,11 +541,10 @@ function Refuse(){
 
     if(saveData.length > 0) {
         for (let i in saveData) {
-
+            console.log(saveData[i]);
             jsonData = dataProvider.getJsonRow(saveData[i]);        // 그리드의 값으로 json 데이터 생성
             jsonData.bizCd = sessionStorage.getItem('bizCd');
-            jsonData.inboundReqNo = document.getElementById('inboundReqNo').value;
-            jsonData.checked = 1; // 승인, 거부 구분자 0일시 승인 1일시 거부
+            jsonData.status = 1;
 
             data.push(jsonData);
         }
@@ -548,10 +558,9 @@ function Refuse(){
         data: JSON.stringify (data),
         success: function(data) {
             console.log(data);
-            dataProvider.fillJsonData(data.data, {});   // 결과 데이터 그리드에 채워 넣기
-            dataProvider.clearRowStates();              // 추가 & 수정 상태 초기화
             gridView.closeLoading();                    // 로딩창 닫기
 
+            Search();
         }, error: function (data) {
             gridView.closeLoading();
         }
