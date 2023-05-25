@@ -237,6 +237,10 @@ let outboundReq2Column =[
             commitWhenExitLast: true,
             commitWhenLeave: true
         });
+
+        gridView.setStateBar({
+            visible: false
+        });
         gridView.header.height = 30;
         gridView.footer.height = 30;
         gridView.stateBar.width = 16;

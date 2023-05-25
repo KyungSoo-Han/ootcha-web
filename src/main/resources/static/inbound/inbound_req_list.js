@@ -93,7 +93,8 @@ let inboundReqColumn =[
         "width" : "80",
         "header" :{
             "text" : "입고요청번호",
-        }
+        },
+        styleName: 'right-align-column'
     },
     {
         "name" : "inboundReqSeq",
@@ -103,7 +104,8 @@ let inboundReqColumn =[
         "header" :{
             "text" : "입고요청순번",
         },
-        numberFormat: "#,##0"
+        numberFormat: "#,##0",
+        styleName: 'right-align-column'
     },
     {
         "name" : "customerCd",
@@ -121,7 +123,8 @@ let inboundReqColumn =[
         "width" : "150",
         "header" :{
             "text" : "화주사명",
-        }
+        },
+        styleName: 'left-align-column'
     },
     {
         "name" : "supplierCd",
@@ -139,7 +142,8 @@ let inboundReqColumn =[
         "width" : "150",
         "header" :{
             "text" : "공급사명",
-        }
+        },
+        styleName: 'left-align-column'
     },
     {
         "name" : "inboundExpDt",
@@ -157,7 +161,8 @@ let inboundReqColumn =[
         "width" : "150",
         "header" :{
             "text" : "비고",
-        }
+        },
+        styleName: 'left-align-column'
     },
     {
         "name" : "itemCd",
@@ -178,7 +183,8 @@ let inboundReqColumn =[
         },
         footer: {
             text: "합계 =>"
-        }
+        },
+        styleName: 'left-align-column'
     },
     {
         "name" : "qty",
@@ -239,7 +245,8 @@ let inboundReqColumn =[
         "width" : "150",
         "header" :{
             "text" : "상세 비고",
-        }
+        },
+        styleName: 'left-align-column'
     }
 ]
 

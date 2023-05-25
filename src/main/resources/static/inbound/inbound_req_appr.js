@@ -121,7 +121,8 @@ let inboundReqColumn =[
         "width" : "150",
         "header" :{
             "text" : "화주사명",
-        }
+        },
+        styleName: 'left-align-column'
     },
     {
         "name" : "supplierCd",
@@ -139,7 +140,8 @@ let inboundReqColumn =[
         "width" : "150",
         "header" :{
             "text" : "공급사명",
-        }
+        },
+        styleName: 'left-align-column'
     },
     {
         "name" : "remark",
@@ -148,7 +150,8 @@ let inboundReqColumn =[
         "width" : "150",
         "header" :{
             "text" : "비고",
-        }
+        },
+        styleName: 'left-align-column'
     }
 ]
 
@@ -172,7 +175,8 @@ let inboundReq2Column =[
         },
         footer: {
             text: "합계 =>"
-        }
+        },
+        styleName: 'left-align-column'
     },
     {
         "name" : "qty",
@@ -233,7 +237,8 @@ let inboundReq2Column =[
         "width" : "150",
         "header" :{
             "text" : "상세 비고",
-        }
+        },
+        styleName: 'left-align-column'
     }
 ]
 
@@ -251,6 +256,9 @@ let inboundReq2Column =[
             commitByCell: true,
             commitWhenExitLast: true,
             commitWhenLeave: true
+        });
+        gridView.setStateBar({
+            visible: false
         });
         gridView.header.height = 30;
         gridView.footer.height = 30;
@@ -340,6 +348,13 @@ let inboundReq2Column =[
             commitByCell: true,
             commitWhenExitLast: true,
             commitWhenLeave: true
+        });
+
+        gridView2.setStateBar({
+            visible: false
+        });
+        gridView2.setCheckBar({
+            visible: false
         });
         gridView2.header.height = 30;
         gridView2.footer.height = 30;
