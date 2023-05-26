@@ -176,9 +176,9 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="/" class="brand-link">
-            <img src="dist/img/ars_logo.jpg" alt="AdminLTE Logo" class="brand-image img-size-50 elevation-3" style="opacity: .8">
-            <span class="brand-text font-weight-light" style="font-family: 'Font Awesome 5 Brands', Tahoma, Geneva, Verdana, sans-serif; ">(주)읏차</span>
+        <a href="/" class="brand-link" style="text-align: center;">
+            <!--<img src="dist/img/ars_logo.jpg" alt="AdminLTE Logo" class="brand-image img-size-50 elevation-3" style="opacity: .8">-->
+            <span class="brand-text font-weight-light" style="  font-family: 'Font Awesome 5 Brands', Tahoma, Geneva, Verdana, sans-serif; font-size: 20px">OOTCHA WMS</span>
         </a>
 
         <!-- Sidebar -->

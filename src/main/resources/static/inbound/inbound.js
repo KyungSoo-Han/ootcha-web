@@ -96,7 +96,8 @@ let inboundColumn =[
         "width" : "80",
         "header" :{
             "text" : "입고요청번호",
-        }
+        },
+        numberFormat: "#,##0"
     },
     {
         "name" : "inboundExpDt",
@@ -292,6 +293,17 @@ let inbound2Column =[
             current = gridView.getCurrent();
             SearchModal('item', '');     // 모달 열기
         };
+
+        gridView.onCellClicked = function (grid, item, clickData) {
+            if(item.cellType == 'gridEmpty')
+                return;
+            let inboundReqDt = dataProvider.getValue(item.itemIndex,'inboundReqDt' );
+            let inboundReqNo = dataProvider.getValue(item.itemIndex,'inboundReqNo' );
+
+            SearchDetail(inboundReqDt,inboundReqNo);
+        };
+
+
         /**
          * 셀 로우 데이터 변경 이벤트
          * @param grid
@@ -332,6 +344,9 @@ let inbound2Column =[
             }
         }
 
+        gridView.setStateBar({
+            visible: false
+        });
     };
 
     function createGrid2(container) {
@@ -427,30 +442,64 @@ function addRow() {
     dataProvider2.addRow({});
 }
 
+
 function Search(){
 
     gridView.showLoading();
 
     let searchCondition = new Object();
     searchCondition.bizCd = sessionStorage.getItem('bizCd')
+
     searchCondition.centerCd = sessionStorage.getItem('centerCd');
     searchCondition.inboundReqNo = document.getElementById('inboundReqNo').value;    // 신규 입력시 공백,
-    searchCondition.inboundReqFromDt = document.getElementById('inboundReqFromDt').value;
-    searchCondition.inboundReqToDt = document.getElementById('inboundReqToDt').value;
+    searchCondition.inboundExpFromDt = document.getElementById('inboundExpFromDt').value;
+    searchCondition.inboundExpToDt = document.getElementById('inboundExpToDt').value;
+   /* if(document.getElementById('supplierCd').value != '')
+        searchCondition.supplierCd = document.getElementById('supplierCd').value;
+    if(document.getElementById('customerCd').value != '')
+        searchCondition.customerCd = document.getElementById('customerCd').value;*/
     searchCondition.status = 2;
 
     $.ajax({
         method : "POST",
-        url : sessionStorage.getItem("serverUrl")+"/api/inboundReq/list",
+        url : sessionStorage.getItem("serverUrl")+"/api/inboundReq/mst",
         contentType: 'application/json',
         data: JSON.stringify(searchCondition),
         success: function(data) {
 
             dataProvider.fillJsonData(data.data, {});   // 결과 데이터 그리드에 채워 넣기
+            SearchDetail(data.data[0].inboundReqDt,data.data[0].inboundReqNo);
             gridView.closeLoading();                    // 로딩창 닫기
 
         }, error: function (data) {
             gridView.closeLoading();
+        }
+    });
+}
+
+
+function SearchDetail(inboundReqDt, inboundReqNo ){
+
+    gridView2.showLoading();
+
+    let searchCondition = new Object();
+    searchCondition.bizCd = sessionStorage.getItem('bizCd')
+    searchCondition.centerCd = sessionStorage.getItem('centerCd');
+    searchCondition.inboundReqNo = inboundReqNo;    // 신규 입력시 공백,
+    searchCondition.inboundReqDt = inboundReqDt;
+
+    $.ajax({
+        method : "POST",
+        url : sessionStorage.getItem("serverUrl")+"/api/inboundReq/dtl",
+        contentType: 'application/json',
+        data: JSON.stringify(searchCondition),
+        success: function(data) {
+
+            dataProvider2.fillJsonData(data.data, {});   // 결과 데이터 그리드에 채워 넣기
+            gridView2.closeLoading();                    // 로딩창 닫기
+
+        }, error: function (data) {
+            gridView2.closeLoading();
         }
     });
 }
@@ -492,9 +541,8 @@ function Inbound(){
 
             jsonData = dataProvider.getJsonRow(saveData[i]);        // 그리드의 값으로 json 데이터 생성
             jsonData.bizCd = sessionStorage.getItem('bizCd');
-            jsonData.inboundReqNo = document.getElementById('inboundReqNo').value;
+            jsonData.centerCd = sessionStorage.getItem('centerCd');
             jsonData.checked = 0; // 승인, 거부 구분자 0일시 승인 1일시 거부
-            dataProvider.getValue();
 
             data.push(jsonData);
         }
@@ -503,7 +551,7 @@ function Inbound(){
 
     $.ajax({
         method : "POST",
-        url : sessionStorage.getItem("serverUrl")+"/api/inboundReq/appr",
+        url : sessionStorage.getItem("serverUrl")+"/api/inbound/save",
         contentType: 'application/json',
         data: JSON.stringify (data),
         success: function(data) {
@@ -560,6 +608,7 @@ function Save(){
         }
     });
 }
+/*
 
 $(function() {
     gridView.onCellClicked = function (grid, clickData) {
@@ -592,5 +641,6 @@ $(function() {
         });
     };
 });
+*/
 
 

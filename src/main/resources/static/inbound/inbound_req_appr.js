@@ -332,6 +332,16 @@ let inboundReq2Column =[
             }
         }
 
+        gridView.onCellClicked = function (grid, item, clickData) {
+            console.log(item);
+            if(item.cellType == 'gridEmpty')
+                return;
+            let inboundReqDt = dataProvider.getValue(item.itemIndex,'inboundReqDt' );
+            let inboundReqNo = dataProvider.getValue(item.itemIndex,'inboundReqNo' );
+
+            SearchDetail(inboundReqDt,inboundReqNo);
+        };
+
     };
 
     function createGrid2(container) {
@@ -582,16 +592,5 @@ function Refuse(){
     });
 }
 
-$(function() {
-    gridView.onCellClicked = function (grid, item, clickData) {
-        console.log(item);
-        if(item.cellType == 'gridEmpty')
-            return;
-        let inboundReqDt = dataProvider.getValue(item.itemIndex,'inboundReqDt' );
-        let inboundReqNo = dataProvider.getValue(item.itemIndex,'inboundReqNo' );
-
-        SearchDetail(inboundReqDt,inboundReqNo);
-    };
-});
 
 

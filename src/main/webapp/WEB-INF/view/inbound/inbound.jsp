@@ -46,7 +46,7 @@
                 <td><input type="text" id="inboundReqNo" ></td>
 
                 <th><label>입고예정일</label></th>
-                <td><input type="date" id="inboundReqFromDt"  > ~ <input type="date" id="inboundReqToDt"></td>
+                <td><input type="date" id="inboundExpFromDt"  > ~ <input type="date" id="inboundExpToDt"></td>
             </tr>
         </table>
     </div>
@@ -66,8 +66,8 @@
         createGrid("inbound1")
         createGrid2("inbound2")
 
-        document.getElementById("inboundReqFromDt").value = inboundReqFromDt.toISOString().slice(0,10);
-        document.getElementById("inboundReqToDt").value = new Date().toISOString().slice(0,10);
+        document.getElementById("inboundExpFromDt").value = fdate.toISOString().slice(0,10);
+        document.getElementById("inboundExpToDt").value = new Date().toISOString().slice(0,10);
     });
 
     customerCd.addEventListener("keyup", function (event) {
