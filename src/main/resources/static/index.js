@@ -17,6 +17,8 @@ if (token != null) {
 } else {
     loginLink.textContent = "로그인";
     signupLink.textContent= "회원가입";
+
+    window.location.replace("/user/loginForm");
 }
 
 function logout(){

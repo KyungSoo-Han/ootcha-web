@@ -38,7 +38,6 @@
     <p>입고요청 > 입고요청승인</p>
 
     <button id="searchBtn" onclick="Search()">조회</button>
-    <button id="exportExcel" onclick="excelExport()">엑셀받기</button>
     <button id="apprBtn" onclick="Appr()">승인</button>
     <button id="refuseBtn" onclick="Refuse()">반려</button>
     <div>

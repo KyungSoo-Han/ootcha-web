@@ -81,10 +81,10 @@
             <!-- /.social-auth-links -->
 
             <p class="mb-1">
-                <a href="forgot-password.html">비밀번호 찾기</a>
+                <a href="#">비밀번호 찾기</a>
             </p>
             <p class="mb-1">
-                <a href="user/signup" class="text-center">회원 가입</a>
+                <a href="/user/signup" class="text-center">회원 가입</a>
             </p>
         </div>
         <!-- /.login-card-body -->
