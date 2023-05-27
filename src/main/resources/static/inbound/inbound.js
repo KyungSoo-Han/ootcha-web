@@ -446,6 +446,8 @@ function addRow() {
 function Search(){
 
     gridView.showLoading();
+    dataProvider.clearRows();
+    dataProvider2.clearRows();
 
     let searchCondition = new Object();
     searchCondition.bizCd = sessionStorage.getItem('bizCd')
@@ -469,7 +471,9 @@ function Search(){
         success: function(data) {
 
             dataProvider.fillJsonData(data.data, {});   // 결과 데이터 그리드에 채워 넣기
-            SearchDetail(data.data[0].inboundReqDt,data.data[0].inboundReqNo);
+
+            if(data.data.length > 0)
+                SearchDetail(data.data[0].inboundReqDt,data.data[0].inboundReqNo);
             gridView.closeLoading();                    // 로딩창 닫기
 
         }, error: function (data) {
