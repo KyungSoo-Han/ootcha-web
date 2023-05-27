@@ -23,6 +23,15 @@ let inboundField = [
         "fieldName" : "customerNm",
         "dataType" : "text"
     },
+
+    {
+        "fieldName" : "supplierCd",
+        "dataType" : "text"
+    },
+    {
+        "fieldName": "supplierNm",
+        "dataType": "text",
+    },
     {
         "fieldName" : "remark",
         "dataType" : "text"
@@ -43,14 +52,6 @@ let inbound2Field = [
         "dataType" : "text"
     },
     {
-        "fieldName" : "supplierCd",
-        "dataType" : "text"
-    },
-    {
-        "fieldName": "supplierNm",
-        "dataType": "text",
-    },
-    {
         "fieldName": "expDt",
         "dataType": "text",
         "datetimeFormat":"yyyy-MM-dd"
@@ -66,10 +67,6 @@ let inbound2Field = [
     },
     {
         "fieldName" : "qty",
-        "dataType" : "number"
-    },
-    {
-        "fieldName" : "inspectYn",
         "dataType" : "number"
     },
     {
@@ -124,7 +121,28 @@ let inboundColumn =[
         "width" : "150",
         "header" :{
             "text" : "화주사명",
+        },
+        styleName: 'left-align-column'
+    },
+
+    {
+        "name" : "supplierCd",
+        "fieldName" : "supplierCd",
+        "type" :"data",
+        "width" : "110",
+        "header" :{
+            "text" : "공급사 코드",
         }
+    },
+    {
+        "name" : "supplierNm",
+        "fieldName" : "supplierNm",
+        "type" :"data",
+        "width" : "180",
+        "header" :{
+            "text" : "공급사 명",
+        },
+        styleName: 'left-align-column'
     },
     {
         "name" : "remark",
@@ -133,7 +151,8 @@ let inboundColumn =[
         "width" : "150",
         "header" :{
             "text" : "비고",
-        }
+        },
+        styleName: 'left-align-column'
     }
 ]
 
@@ -144,7 +163,7 @@ let inbound2Column =[
         "type" :"data",
         "width" : "110",
         "header" :{
-            "text" : "입고요청번호",
+            "text" : "입고요청순번",
         },
       visible:false
     },
@@ -165,24 +184,7 @@ let inbound2Column =[
         "header" :{
             "text" : "품목 명",
         },
-    },
-    {
-        "name" : "supplierCd",
-        "fieldName" : "supplierCd",
-        "type" :"data",
-        "width" : "110",
-        "header" :{
-            "text" : "공급사 코드",
-        }
-    },
-    {
-        "name" : "supplierNm",
-        "fieldName" : "supplierNm",
-        "type" :"data",
-        "width" : "180",
-        "header" :{
-            "text" : "공급사 명",
-        }
+        styleName: 'left-align-column'
     },
     {
         "name" : "expDt",
@@ -227,22 +229,14 @@ let inbound2Column =[
         }
     },
     {
-        "name" : "inspectYn",
-        "fieldName" : "inspectYn",
-        "type" :"data",
-        "width" : "100",
-        "header" :{
-            "text" : "검사여부",
-        },
-    },
-    {
         "name" : "subRemark",
         "fieldName" : "subRemark",
         "type" :"data",
         "width" : "150",
         "header" :{
             "text" : "상세 비고",
-        }
+        },
+        styleName: 'left-align-column'
     }
 ]
 
@@ -354,7 +348,7 @@ let inbound2Column =[
         dataProvider2.setFields(inbound2Field);
         dataProvider2.setOptions({
             softDeleting: false                 // 행 삭제 시 실제로 삭제 됨, true: 삭제되지 않고 상태를 보여줌
-        })
+        });
 
         gridView2 = new RealGrid.GridView(container);
         gridView2.setEditOptions({
@@ -377,6 +371,12 @@ let inbound2Column =[
         gridView2.setDataSource(dataProvider2);
         gridView2.setColumns(inbound2Column);
 
+        gridView2.setStateBar({
+            visible: false
+        });
+        gridView2.setCheckBar({
+            visible: false
+        });
         /**
          * 셀 버튼 클릭 이벤트
          * @param grid
@@ -454,6 +454,7 @@ function Search(){
     searchCondition.inboundReqNo = document.getElementById('inboundReqNo').value;    // 신규 입력시 공백,
     searchCondition.inboundExpFromDt = document.getElementById('inboundExpFromDt').value;
     searchCondition.inboundExpToDt = document.getElementById('inboundExpToDt').value;
+
    /* if(document.getElementById('supplierCd').value != '')
         searchCondition.supplierCd = document.getElementById('supplierCd').value;
     if(document.getElementById('customerCd').value != '')
@@ -542,6 +543,7 @@ function Inbound(){
             jsonData = dataProvider.getJsonRow(saveData[i]);        // 그리드의 값으로 json 데이터 생성
             jsonData.bizCd = sessionStorage.getItem('bizCd');
             jsonData.centerCd = sessionStorage.getItem('centerCd');
+            jsonData.createdId = sessionStorage.getItem('userId');
             jsonData.checked = 0; // 승인, 거부 구분자 0일시 승인 1일시 거부
 
             data.push(jsonData);
@@ -556,17 +558,17 @@ function Inbound(){
         data: JSON.stringify (data),
         success: function(data) {
             console.log(data);
-            dataProvider.fillJsonData(data.data, {});   // 결과 데이터 그리드에 채워 넣기
+            //dataProvider.fillJsonData(data.data, {});   // 결과 데이터 그리드에 채워 넣기
             dataProvider.clearRowStates();              // 추가 & 수정 상태 초기화
             gridView.closeLoading();                    // 로딩창 닫기
-
+            Search();
         }, error: function (data) {
             gridView.closeLoading();
         }
     });
 }
 
-function Save(){
+function AddInboundReqItem(){
 
     let data = new Array();
     let jsonData = null;
