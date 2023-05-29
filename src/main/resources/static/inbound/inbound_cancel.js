@@ -3,21 +3,14 @@ let current;
 
 
 let inboundCancelField = [
-    {
-        "fieldName" : "inboundNo",
-        "dataType" : "text"
-    },
+
     {
         "fieldName" : "inboundDt",
         "dataType" : "text"
     },
     {
-        "fieldName" : "inboundReqDt",
+        "fieldName" : "inboundNo",
         "dataType" : "text"
-    },
-    {
-        "fieldName" : "inboundReqNo",
-        "dataType" : "number"
     },
     {
         "fieldName" : "inboundExpDt",
@@ -34,6 +27,14 @@ let inboundCancelField = [
     {
         "fieldName" : "remark",
         "dataType" : "text"
+    },
+    {
+        "fieldName" : "inboundReqDt",
+        "dataType" : "text"
+    },
+    {
+        "fieldName" : "inboundReqNo",
+        "dataType" : "number"
     }
 ]
 
@@ -84,7 +85,18 @@ let inboundCancel2Field = [
 
 
 let inboundCancelColumn =[
+
     {
+        "name" : "inboundDt",
+        "fieldName" : "inboundDt",
+        "type" :"data",
+        "width" : "110",
+        "header" :{
+            "text" : "입고일자",
+        },
+        //visible:false, //임시,
+
+    },{
         "name" : "inboundNo",
         "fieldName" : "inboundNo",
         "type" :"data",
@@ -92,36 +104,7 @@ let inboundCancelColumn =[
         "header" :{
             "text" : "입고순번",
         },
-        visible:false //임시
-    },
-    {
-        "name" : "inboundDt",
-        "fieldName" : "inboundDt",
-        "type" :"data",
-        "width" : "110",
-        "header" :{
-            "text" : "입고순번",
-        },
-        visible:false, //임시,
-        numberFormat: "#,##0"
-    },
-    {
-        "name" : "inboundReqDt",
-        "fieldName" : "inboundReqDt",
-        "type" :"data",
-        "width" : "120",
-        "header" :{
-            "text" : "입고요청일자",
-        }
-    },
-    {
-        "name" : "inboundReqNo",
-        "fieldName" : "inboundReqNo",
-        "type" :"data",
-        "width" : "80",
-        "header" :{
-            "text" : "입고요청번호",
-        },
+        //visible:false //임시
         numberFormat: "#,##0"
     },
     {
@@ -159,6 +142,25 @@ let inboundCancelColumn =[
         "header" :{
             "text" : "비고",
         }
+    },
+    {
+        "name" : "inboundReqDt",
+        "fieldName" : "inboundReqDt",
+        "type" :"data",
+        "width" : "120",
+        "header" :{
+            "text" : "입고요청일자",
+        }
+    },
+    {
+        "name" : "inboundReqNo",
+        "fieldName" : "inboundReqNo",
+        "type" :"data",
+        "width" : "80",
+        "header" :{
+            "text" : "입고요청번호",
+        },
+        numberFormat: "#,##0"
     }
 ]
 
@@ -354,10 +356,10 @@ let inboundCancel2Column =[
         gridView.onCellClicked = function (grid, item, clickData) {
             if(item.cellType == 'gridEmpty')
                 return;
-            let inboundReqDt = dataProvider.getValue(item.itemIndex,'inboundReqDt' );
-            let inboundReqNo = dataProvider.getValue(item.itemIndex,'inboundReqNo' );
+            let inboundDt = dataProvider.getValue(item.itemIndex,'inboundDt' );
+            let inboundNo = dataProvider.getValue(item.itemIndex,'inboundNo' );
 
-            SearchDetail(inboundReqDt,inboundReqNo);
+            SearchDetail(inboundDt,inboundNo);
         };
 
     };
@@ -483,7 +485,7 @@ function Search(){
 
     $.ajax({
         method : "POST",
-        url : sessionStorage.getItem("serverUrl")+"/api/inboundReq/mst",
+        url : sessionStorage.getItem("serverUrl")+"/api/inbound/mst",
         contentType: 'application/json',
         data: JSON.stringify(searchCondition),
         success: function(data) {
@@ -491,7 +493,7 @@ function Search(){
             dataProvider.fillJsonData(data.data, {});   // 결과 데이터 그리드에 채워 넣기
 
             if(data.data.length > 0)
-                SearchDetail(data.data[0].inboundReqDt,data.data[0].inboundReqNo);
+                SearchDetail(data.data[0].inboundDt,data.data[0].inboundNo);
             gridView.closeLoading();                    // 로딩창 닫기
 
         }, error: function (data) {
@@ -501,19 +503,19 @@ function Search(){
 }
 
 
-function SearchDetail(inboundReqDt, inboundReqNo ){
+function SearchDetail(inboundDt, inboundNo ){
 
     gridView2.showLoading();
 
     let searchCondition = new Object();
     searchCondition.bizCd = sessionStorage.getItem('bizCd')
     searchCondition.centerCd = sessionStorage.getItem('centerCd');
-    searchCondition.inboundReqNo = inboundReqNo;    // 신규 입력시 공백,
-    searchCondition.inboundReqDt = inboundReqDt;
+    searchCondition.inboundNo = inboundNo;    // 신규 입력시 공백,
+    searchCondition.inboundDt = inboundDt;
 
     $.ajax({
         method : "POST",
-        url : sessionStorage.getItem("serverUrl")+"/api/inboundReq/dtl",
+        url : sessionStorage.getItem("serverUrl")+"/api/inbound/dtl",
         contentType: 'application/json',
         data: JSON.stringify(searchCondition),
         success: function(data) {
