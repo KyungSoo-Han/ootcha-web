@@ -317,13 +317,13 @@ function Search(){
     let searchCondition = new Object();
     searchCondition.bizCd = sessionStorage.getItem('bizCd')
     searchCondition.centerCd = sessionStorage.getItem('centerCd');
-    searchCondition.inboundReqNo = document.getElementById('inboundNo').value;    // 신규 입력시 공백,
-    searchCondition.inboundReqFromDt = document.getElementById('inboundReqFromDt').value;
-    searchCondition.inboundReqToDt = document.getElementById('inboundReqToDt').value;
+    //searchCondition.inboundReqNo = document.getElementById('inboundNo').value;    // 신규 입력시 공백,
+    searchCondition.inboundExpFromDt = document.getElementById('inboundExpFromDt').value;
+    searchCondition.inboundExpToDt = document.getElementById('inboundExpToDt').value;
 
     $.ajax({
         method : "POST",
-        url : sessionStorage.getItem("serverUrl")+"/api/inboundReq/inspectList",
+        url : sessionStorage.getItem("serverUrl")+"/api/inboundinspect/list",
         contentType: 'application/json',
         data: JSON.stringify(searchCondition),
         success: function(data) {

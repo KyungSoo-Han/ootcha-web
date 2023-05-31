@@ -46,23 +46,60 @@
                 <td><input type="text" id="inboundNo" ></td>
 
                 <th><label>입고예정일</label></th>
-                <td><input type="date" id="inboundReqFromDt"  > ~ <input type="date" id="inboundReqToDt"></td>
+                <td><input type="date" id="inboundExpFromDt"  > ~ <input type="date" id="inboundExpToDt"></td>
+            </tr>
+            <tr>
+                <th><label>화주사코드</label></th>
+                <td>
+                    <input type="text" id="customerCd">
+                    <button type="button" onclick="SearchModal('customer','')">찾기</button>
+                </td>
+
+                <th><label>화주사명</label></th>
+                <td><input type="text" id="customerNm" readonly ></td>
+
+                <th><label>공급사코드</label></th>
+                <td>
+                    <input type="text" id="supplierCd">
+                    <button type="button" onclick="SearchModal('supplier','')">찾기</button>
+                </td>
+
+                <th><label>공급사명</label></th>
+                <td><input type="text" id="supplierNm" readonly></td>
             </tr>
         </table>
     </div>
     <br>
     <div id="inboundInspect"  style ="width: 100%; height:400px"></div>
+
+    <div id="modalWrap" >
+        <div id="modalBody" >
+            <div style ="width: 100%; height:20px; padding-top:5px; padding-bottom:5px" >
+                <label>코드</label><input type="text" id="code" >
+                <label>명칭</label><input type="text" id="name" >
+            </div>
+            <div id="selectGrid"  style ="width: 100%; height:490px">
+            </div>
+            <div  style ="width: 100%; height:70px">
+                <label id="modal_param"></label>
+                <button id="searchModalBtn" onclick="SearchModal('','')">조회</button>
+                <button id="selectBtn" onclick="btnSelect()">선택</button>
+                <button id="closeBtn" onclick="closeModal()">닫기</button>
+            </div>
+        </div>
+    </div>
 </body>
 <script>
     let nowDate = new Date();	// 현재 날짜 및 시간
-    let fdate = new Date(nowDate.setMonth(nowDate.getMonth() - 1));	// 한달 전
+    let inboundExpFromDt = new Date(nowDate.setMonth(nowDate.getMonth() - 1));	// 한달 전
 
     window.addEventListener('DOMContentLoaded', function () {
 
         createGrid("inboundInspect")
+        createModalGrid("selectGrid")
 
-        document.getElementById("inboundReqFromDt").value = inboundReqFromDt.toISOString().slice(0,10);
-        document.getElementById("inboundReqToDt").value = new Date().toISOString().slice(0,10);
+        document.getElementById("inboundExpFromDt").value = inboundExpFromDt.toISOString().slice(0,10);
+        document.getElementById("inboundExpToDt").value = new Date().toISOString().slice(0,10);
     });
 
     customerCd.addEventListener("keyup", function (event) {
