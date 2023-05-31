@@ -70,7 +70,7 @@
         </table>
     </div>
     <br>
-    <div id="inboundInspect"  style ="width: 100%; height:400px"></div>
+    <div id="inboundInspect"  style ="width: 100%; height:660px"></div>
 
     <div id="modalWrap" >
         <div id="modalBody" >
