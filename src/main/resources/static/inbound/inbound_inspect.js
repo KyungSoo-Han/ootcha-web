@@ -50,15 +50,19 @@ let inboundInspectField = [
         "datetimeFormat":"yyyy-MM-dd"
     },
     {
-        "fieldName" : "qty",
+        "fieldName" : "inboundQty",
         "dataType" : "number"
     },
     {
-        "fieldName" : "faultQty",
+        "fieldName" : "goodQty",
+        "dataType" : "number"
+    },
+    {
+        "fieldName" : "badQty",
         "dataType" : "number"
     }, //임시
     {
-        "fieldName" : "faultReason",
+        "fieldName" : "badReason",
         "dataType" : "text"
     }, //임시
     {
@@ -79,15 +83,41 @@ let inboundInspectColumn =[
         "width" : "120",
         "header" :{
             "text" : "입고일",
+        },
+        styleCallback: function(grid, dataCell){
+            let ret = {}
+            ret.styleName ="readonly-column";
+            return ret;
         }
     },
     {
-        "name" : "inboundReqNo",
+        "name" : "inboundNo",
         "fieldName" : "inboundNo",
         "type" :"data",
         "width" : "80",
         "header" :{
             "text" : "입고번호",
+        },
+        numberFormat: "#,##0",
+        styleCallback: function(grid, dataCell){
+            let ret = {}
+            ret.styleName ="readonly-column";
+            return ret;
+        }
+    },
+    {
+        "name" : "inboundNo",
+        "fieldName" : "inboundNo",
+        "type" :"data",
+        "width" : "80",
+        "header" :{
+            "text" : "입고순번",
+        },
+        numberFormat: "#,##0",
+        styleCallback: function(grid, dataCell){
+            let ret = {}
+            ret.styleName ="readonly-column";
+            return ret;
         }
     },
     {
@@ -97,6 +127,11 @@ let inboundInspectColumn =[
         "width" : "100",
         "header" :{
             "text" : "화주사코드",
+        },
+        styleCallback: function(grid, dataCell){
+            let ret = {}
+            ret.styleName ="readonly-column";
+            return ret;
         }
     },
     {
@@ -106,6 +141,12 @@ let inboundInspectColumn =[
         "width" : "150",
         "header" :{
             "text" : "화주사명",
+        },
+        styleName: 'left-align-column',
+        styleCallback: function(grid, dataCell){
+            let ret = {}
+            ret.styleName ="readonly-column";
+            return ret;
         }
     },
     {
@@ -115,6 +156,11 @@ let inboundInspectColumn =[
         "width" : "100",
         "header" :{
             "text" : "입고예정일",
+        },
+        styleCallback: function(grid, dataCell){
+            let ret = {}
+            ret.styleName ="readonly-column";
+            return ret;
         }
     },
     {
@@ -124,6 +170,11 @@ let inboundInspectColumn =[
         "width" : "110",
         "header" :{
             "text" : "품목 코드",
+        },
+        styleCallback: function(grid, dataCell){
+            let ret = {}
+            ret.styleName ="readonly-column";
+            return ret;
         }
     },
     {
@@ -134,6 +185,12 @@ let inboundInspectColumn =[
         "header" :{
             "text" : "품목 명",
         },
+        styleCallback: function(grid, dataCell){
+            let ret = {}
+            ret.styleName ="readonly-column";
+            return ret;
+        },
+        styleName: 'left-align-column'
     },
     {
         "name" : "expDt",
@@ -142,6 +199,11 @@ let inboundInspectColumn =[
         "type" :"data",
         "header" :{
             "text" : "유통기한",
+        },
+        styleCallback: function(grid, dataCell){
+            let ret = {}
+            ret.styleName ="readonly-column";
+            return ret;
         }
     },
     {
@@ -151,6 +213,11 @@ let inboundInspectColumn =[
         "width" : "150",
         "header" :{
             "text" : "생산LOT",
+        },
+        styleCallback: function(grid, dataCell){
+            let ret = {}
+            ret.styleName ="readonly-column";
+            return ret;
         }
     },
     {
@@ -160,26 +227,56 @@ let inboundInspectColumn =[
         "type" :"data",
         "header" :{
             "text" : "생산일자",
+        },
+        styleCallback: function(grid, dataCell){
+            let ret = {}
+            ret.styleName ="readonly-column";
+            return ret;
         }
     },
     {
-        "name" : "qty",
-        "fieldName" : "qty",
+        "name" : "inboundQty",
+        "fieldName" : "inboundQty",
         "type" :"data",
         "width" : "100",
         "header" :{
-            "text" : "수량",
+            "text" : "검사수량",
         },
         "numberFormat" : "#,###.00",
         footer: {
             text: "",
             numberFormat : "#,###.00",
             expression: "sum",
+        },
+        styleCallback: function(grid, dataCell){
+            let ret = {}
+            ret.styleName ="readonly-column";
+            return ret;
         }
     },
     {
-        "name" : "faultQty",
-        "fieldName" : "faultQty",
+        "name" : "goodQty",
+        "fieldName" : "goodQty",
+        "type" :"data",
+        "width" : "100",
+        "header" :{
+            "text" : "정상수량",
+        },
+        "numberFormat" : "#,###.00",
+        footer: {
+            text: "",
+            numberFormat : "#,###.00",
+            expression: "sum",
+        },
+        styleCallback: function(grid, dataCell){
+            let ret = {}
+            ret.styleName ="readonly-column";
+            return ret;
+        }
+    },
+    {
+        "name" : "badQty",
+        "fieldName" : "badQty",
         "type" :"data",
         "width" : "100",
         "header" :{
@@ -190,15 +287,26 @@ let inboundInspectColumn =[
             text: "",
             numberFormat : "#,###.00",
             expression: "sum",
+        },
+        styleCallback: function(grid, dataCell){
+            let ret = {}
+            ret.editable = true;
+            return ret;
         }
     }, //임시
     {
-        "name" : "faultReason",
-        "fieldName" : "faultReason",
+        "name" : "badReason",
+        "fieldName" : "badReason",
         "type" :"data",
         "width" : "150",
         "header" :{
             "text" : "불량사유",
+        },
+        styleName: 'left-align-column',
+        styleCallback: function(grid, dataCell){
+            let ret = {}
+            ret.editable = true;
+            return ret;
         }
     }, //임시
     {
@@ -208,6 +316,11 @@ let inboundInspectColumn =[
         "width" : "110",
         "header" :{
             "text" : "공급사 코드",
+        },
+        styleCallback: function(grid, dataCell){
+            let ret = {}
+            ret.styleName ="readonly-column";
+            return ret;
         }
     },
     {
@@ -217,6 +330,12 @@ let inboundInspectColumn =[
         "width" : "180",
         "header" :{
             "text" : "공급사 명",
+        },
+        styleName: 'left-align-column',
+        styleCallback: function(grid, dataCell){
+            let ret = {}
+            ret.styleName ="readonly-column";
+            return ret;
         }
     }
 
@@ -239,6 +358,7 @@ let inboundInspectColumn =[
         gridView.header.height = 30;
         gridView.footer.height = 30;
         gridView.stateBar.width = 16;
+        gridView.setEditOptions({editable:false});
 
         gridView.pasteOptions.checkReadOnly = true; //readOnly이거나 editable이 false인 Column은 paste대상에서 제외
         gridView.displayOptions.rowHeight = 23;
