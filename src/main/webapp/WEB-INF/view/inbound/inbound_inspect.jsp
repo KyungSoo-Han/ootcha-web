@@ -29,6 +29,9 @@
         .left-align-column{
             text-align: left;
         }
+        .readonly-column{
+            background: #f3ebdb;
+        }
         input:read-only{
             background-color: #f3ebdb;
         }
