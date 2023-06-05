@@ -125,22 +125,6 @@ let inboundReqColumn =[
         },
         "numberFormat" : "#,###.00"
     },
-    /*   {
-           "name" : "amount",
-           "fieldName" : "amount",
-           "type" :"data",
-           "width" : "100",
-           "header" :{
-               "text" : "공급가",
-           },
-           "numberFormat" : "#,###.00",
-           styleCallback: function(grid, dataCell){
-               let ret = {}
-               ret.editable = false;
-               ret.styleName = "readonly-column";
-               return ret;
-           }
-       },*/
     {
         "name" : "expDt",
         "fieldName" : "expDt",
