@@ -427,7 +427,9 @@ let inboundInspectColumn =[
                 //gridView.setCurrent({dataRow:current.dataRow}); // 수동 포커스 이동
             }
         }
-
+        dataProvider.onDataChanged = function (provider) {
+            console.log('dataChanged!');
+        };
     };
 
 function Search(){
