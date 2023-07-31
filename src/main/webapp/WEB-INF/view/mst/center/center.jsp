@@ -23,7 +23,7 @@
     <link href="/bsrp/css/jquery-splitter.css" rel="stylesheet" >
 
     <script type="text/javascript" src="/libs/realgrid-lic.js?vs=<%=nowDatetime%>"></script>
-    <script type="text/javascript" src="/libs/realgrid.2.6.0.min.js"></script>
+    <script type="text/javascript" src="/libs/realgrid.2.6.3.min.js"></script>
     <script type="text/javascript" src="/libs/jquery-3.4.0.min.js"></script>
     <script type="text/javascript" src="/libs/jquery-splitter.js"></script>
 

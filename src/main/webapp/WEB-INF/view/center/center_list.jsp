@@ -26,7 +26,7 @@
     <script type="text/javascript" src="/libs/jquery-splitter.js"></script>
     <script type="text/javascript" src="/libs/jszip.min.js"></script>
     <script type="text/javascript" src="/libs/realgrid-lic.js"></script>
-    <script type="text/javascript" src="/libs/realgrid.2.6.0.min.js"></script>
+    <script type="text/javascript" src="/libs/realgrid.2.6.3.min.js"></script>
     <script type="text/javascript" src="/libs/realgrid-utils.js?vs=<%=nowDatetime%>"></script>
 
 

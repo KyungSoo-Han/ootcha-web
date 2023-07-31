@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="/bsrp/css/realgrid-sky-blue.css?vs=<%=nowDatetime%>"/>
     <link rel="stylesheet" href="/inbound/inbound_req_modal.css?vs=<%=nowDatetime%>"/>
     <script type="text/javascript" src="/libs/realgrid-lic.js?vs=<%=nowDatetime%>"></script>
-    <script type="text/javascript" src="/libs/realgrid.2.6.0.min.js"></script>
+    <script type="text/javascript" src="/libs/realgrid.2.6.3.min.js"></script>
     <script type="text/javascript" src="/libs/jquery-3.4.0.min.js" ></script>
     <script type="text/javascript" src="/inbound/inbound_pileup.js?vs=<%=nowDatetime%>"></script>
     <script type="text/javascript" src="/inbound/inbound_req_modal.js?vs=<%=nowDatetime%>"></script>
