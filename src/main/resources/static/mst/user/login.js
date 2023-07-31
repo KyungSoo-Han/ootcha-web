@@ -1,4 +1,5 @@
 
+
 function Search() {
     let id = document.getElementById('id').value;
     let password = document.getElementById('password').value;
@@ -6,9 +7,14 @@ function Search() {
     requestBody.id = id;
     requestBody.password = password;
 
+    console.log(sessionStorage.getItem("serverUrl"));
+
+    const isLocalhost = window.location.hostname === 'localhost';
+    const serverUrl = isLocalhost ? 'http://localhost:81' : 'http://api.ootcha.com:81';
+
     $.ajax({
         method : "POST",
-        url : sessionStorage.getItem("serverUrl") + "/api/user/login", //?" +"gbn=DETAIL&biz_cd=10001&center_cd="+ srh_center_nm +"",
+        url : serverUrl + "/api/user/login", //?" +"gbn=DETAIL&biz_cd=10001&center_cd="+ srh_center_nm +"",
         contentType: 'application/json',
         data:JSON.stringify(requestBody),
         success: function(data) {
